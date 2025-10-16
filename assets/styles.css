@@ -1,0 +1,167 @@
+/* =========================
+   Water Tanks Store — Pro UI
+   تصميم حديث، سريع، RTL، متجاوب
+   ========================= */
+
+/* Design Tokens */
+:root{
+  --bg: #000000;              /* خلفية عامة داكنة */
+  --surface: #0f1529;         /* سطح أساسي */
+  --surface-2: #0e1426;       /* سطح ثانوي */
+  --elev: #10172f;            /* ارتفاع طفيف */
+  --text: #e9edf3;            /* نص أساسي */
+  --muted: #a7b0c0;           /* نص ثانوي */
+  --brand: #22d3ee;           /* سماوي */
+  --brand-2: #7df0c1;         /* أخضر فيروزي */
+  --accent: #8b5cf6;          /* بنفسجي خفيف */
+  --danger: #ff6b81;
+  --ok: #60d394;
+  --radius: 16px;
+  --radius-sm: 12px;
+  --ring: 0 0 0 3px rgba(34,211,238,.25);
+  --shadow-1: 0 10px 25px rgba(0,0,0,.35);
+  --shadow-2: 0 18px 40px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Cairo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 70% -10%, rgba(34,211,238,.10), transparent 60%),
+    radial-gradient(1100px 500px at 20% -20%, rgba(125,240,193,.08), transparent 60%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:min(1200px,92%);margin-inline:auto}
+
+/* ===== Header: brand + tabbed nav buttons ===== */
+header{
+  position:sticky; top:0; z-index:100;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg,rgba(15,21,41,.75),rgba(15,21,41,.55));
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.header-wrap{display:flex;align-items:center;gap:16px;padding:12px 0}
+#brand{
+  font-weight:900; letter-spacing:.3px; display:flex; align-items:center; gap:10px;
+}
+#brand .logo{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  box-shadow:var(--shadow-1);
+}
+.nav{
+  display:flex; flex-wrap:wrap; gap:8px; margin-inline-start:8px;
+}
+.nav .tab{
+  padding:8px 12px; border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  color:var(--text); font-weight:600; opacity:.92; transition:.2s;
+}
+.nav .tab:hover{transform:translateY(-2px);box-shadow:var(--shadow-1);opacity:1}
+.nav .tab.active{
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#06252a; border-color:transparent; box-shadow:var(--shadow-2);
+}
+#cta{
+  margin-inline-start:auto;
+  display:inline-block; padding:10px 14px; border-radius:12px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#06252a; font-weight:800; border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--shadow-2);
+}
+
+/* ===== Generic layout ===== */
+main{padding:28px 0}
+section + section{margin-top:26px}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-1);
+  padding:18px;
+}
+h1{font-size:clamp(26px,3.2vw,42px);margin:0 0 10px}
+h2{font-size:clamp(20px,2.2vw,28px);margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 14px}
+
+/* ===== Buttons & form controls ===== */
+.btn{
+  display:inline-block; padding:10px 14px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.10); background:var(--surface-2);
+  color:var(--text); cursor:pointer; transition:.2s; font-weight:600;
+}
+.btn:hover{transform:translateY(-2px); box-shadow:0 12px 22px rgba(0,0,0,.25)}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#06252a; border-color:transparent; font-weight:800}
+.btn.ghost{background:transparent}
+input.input, select, textarea{
+  width:100%; padding:10px 12px; border-radius:12px;
+  background:#0f152b; color:var(--text); border:1px solid rgba(255,255,255,.12);
+  outline:none;
+}
+input.input:focus, select:focus, textarea:focus{box-shadow:var(--ring); border-color:transparent}
+label{display:block;margin:8px 0}
+
+/* ===== HERO with image slot (global) ===== */
+.hero{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center;
+}
+.hero .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.tank-slot, .tank-banner{
+  width:100%; aspect-ratio: 4/5;           /* slot عام للصورة */
+  border-radius:18px; overflow:hidden;
+  background:
+    linear-gradient(135deg, rgba(34,211,238,.12), rgba(125,240,193,.08)),
+    radial-gradient(800px 300px at 70% 0%, rgba(34,211,238,.20), transparent 60%),
+    #0d1428;
+  border:2px dashed rgba(255,255,255,.18);
+  display:grid; place-items:center; color:var(--muted);
+  box-shadow:var(--shadow-1);
+}
+.tank-banner{aspect-ratio: 21/9;}          /* بانر عريض لصفحات داخلية */
+.tank-slot.small{aspect-ratio:1/1}         /* لبطاقات المنتجات */
+.tank-slot > span, .tank-banner > span{opacity:.9}
+
+/* مثال لتحويل الـslot إلى صورة خلفية (اختياري):
+.tank-slot{ background-image:url('assets/tanks/tank-2000.jpg'); background-size:cover; background-position:center; border-style:solid; } */
+
+/* ===== Products ===== */
+#filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+#product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product{
+  background:var(--surface); border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius); padding:14px; box-shadow:var(--shadow-1);
+}
+.product h3{margin:10px 0 6px; font-size:20px}
+.product .sku{color:var(--muted);margin:0 0 8px}
+.product .meta{color:var(--muted);font-size:14px;padding:0 0 8px}
+.product .actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ===== Tables (specs) ===== */
+.table-wrap{overflow:auto;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th, td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+th{background:#0f1730;text-align:right}
+tbody tr:hover td{background:rgba(255,255,255,.02)}
+
+/* ===== Footer ===== */
+footer{margin:40px 0 70px;text-align:center;color:var(--muted);font-size:14px}
+
+/* ===== Responsive ===== */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  #product-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  #product-grid{grid-template-columns:1fr}
+}
+
+/* ===== Focus-visible for a11y ===== */
+:focus-visible{outline:none;box-shadow:var(--ring)}
